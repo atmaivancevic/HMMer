@@ -5,16 +5,17 @@
 # Remove all blank lines from $1.domains_filtered
 sed -i '/^$/d' $1_allSeqs.txt
 
+
+
 # For each file contain the (unique) set of domains found in that genome, 
 # append the genomes/species name as a second column to each domain
-awk '{print $1 "\t" "$1"}' $1.domains_filtered > $1.domains_name_appended
+awk '{print $1 "\t" "mammal_$1"}' $1.domains_filtered > $1.domains_name_appended
 
-
-
-
-
-
-
+# maybe also add a group_id to the species name, e.g. MAMMAL_Cow vs NONMAMM_Viper vs PLANT_Tomato. 
+# This will allow easy identification of domains that exist between mammals/non-mammalian animals/plants.
+# Also maybe change the file names before the above awk step,
+# so that they're consistently either common names or scientific names 
+# (maybe scientific names e.g. MAMMAL_Bos_taurus)
 
 
 
