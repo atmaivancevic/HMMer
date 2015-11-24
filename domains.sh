@@ -14,4 +14,4 @@ cat $1.domains_filtered | xargs | sed -e 's/ /, /g' > $1.domains_list
 sed -E 's/([#$%&_\])/\\&/g' $1.domains_list > $1.latex_domains
 
 # remove unwanted files
-rm $1.domains_list $1.domains_filtered
+rm $1.domains_list

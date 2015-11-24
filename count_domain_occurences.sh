@@ -11,18 +11,14 @@ sed -i '/^$/d' $1_allSeqs.txt
 # append the genomes/species name as a second column to each domain
 awk '{print $1 "\t" "mammal_$1"}' $1.domains_filtered > $1.domains_name_appended
 
-# maybe also add a group_id to the species name, e.g. MAMMAL_Cow vs NONMAMM_Viper vs PLANT_Tomato. 
+# maybe also add a group_id to the species name, e.g. MAMMAL_Cow vs OTHER_Viper vs PLANT_Tomato. 
 # This will allow easy identification of domains that exist between mammals/non-mammalian animals/plants.
 # Also maybe change the file names before the above awk step,
 # so that they're consistently either common names or scientific names 
 # (maybe scientific names e.g. MAMMAL_Bos_taurus)
 
 
-
-
-
-# Note!! Be sure to only include the 180 species with confirmed ORF1 domains, and that they don't have any # in there!
-# (can check this by concatenating all 180 files and then looking for #---- etc)
+# New script
 
 # concatenate all output ORF1 domain files together
 cat *.domains_filtered > All_animal_species.domains_filtered
@@ -30,7 +26,7 @@ cat *.domains_filtered > All_animal_species.domains_filtered
 # get rid of blank lines
 sed -i '/^$/d' All_animal_species.domains_filtered
 
-# sort lines
+# sort lines (this will automatically sort based on first column, then second column)
 sort All_animal_species.domains_filtered > All_animal_species_domains.sorted
 
 # count the number of times each domain occurs
